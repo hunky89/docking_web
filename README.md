@@ -23,3 +23,15 @@ docker compose up -d
 ## 访问地址
 
 - 前端：http://<服务器IP>:8080
+
+## 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+```
+
+访问 [http://localhost:3000](http://localhost:3000)
