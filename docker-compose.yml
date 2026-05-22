@@ -1,0 +1,38 @@
+services:
+  docling-backend:
+    image: docling-backend:latest
+    pull_policy: never
+    container_name: docling-backend
+    volumes:
+      - /tmp/docling-uploads:/tmp
+    environment:
+      - HF_ENDPOINT=https://hf-mirror.com
+      - HUGGINGFACE_HUB_OFFLINE=1
+    restart: unless-stopped
+    networks:
+      - docling-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  docling-frontend:
+    image: docling-frontend:latest
+    pull_policy: never
+    container_name: docling-frontend
+    ports:
+      - "8080:3000"
+    environment:
+      - BACKEND_URL=http://docling-backend:8000
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - docling-net
+    depends_on:
+      - docling-backend
+
+networks:
+  docling-net:
+    driver: bridge
