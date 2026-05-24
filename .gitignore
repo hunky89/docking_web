@@ -40,8 +40,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# docker images
+# python
+backend/venv/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+
+# docker images / dist artifacts
+data/
+dist.zip
 *.tar
 *.tar.gz
 *.zip
-data/

@@ -1,0 +1,5 @@
+docling
+rapidocr-onnxruntime
+fastapi
+uvicorn[standard]
+python-multipart
